@@ -10,9 +10,13 @@
 		3E37AF3429AD789D00F6B787 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E37AF3329AD789D00F6B787 /* AppDelegate.swift */; };
 		3E37AF3629AD789D00F6B787 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E37AF3529AD789D00F6B787 /* SceneDelegate.swift */; };
 		3E37AF3829AD789D00F6B787 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E37AF3729AD789D00F6B787 /* ViewController.swift */; };
-		3E37AF3B29AD789D00F6B787 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E37AF3929AD789D00F6B787 /* Main.storyboard */; };
 		3E37AF3D29AD78A000F6B787 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E37AF3C29AD78A000F6B787 /* Assets.xcassets */; };
 		3E37AF4029AD78A000F6B787 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E37AF3E29AD78A000F6B787 /* LaunchScreen.storyboard */; };
+		3E37E14629AD82B70002B0B5 /* CatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E37E14529AD82B70002B0B5 /* CatModel.swift */; };
+		3E37E14A29AD849D0002B0B5 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E37E14929AD849D0002B0B5 /* NetworkManager.swift */; };
+		3E37E14D29AD87190002B0B5 /* CatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E37E14C29AD87190002B0B5 /* CatsViewModel.swift */; };
+		3E37E15029AD90930002B0B5 /* CatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E37E14F29AD90930002B0B5 /* CatTableViewCell.swift */; };
+		3E94BE8829AD95C1001AC899 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E94BE8629AD95C1001AC899 /* UIImageView+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,10 +24,14 @@
 		3E37AF3329AD789D00F6B787 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3E37AF3529AD789D00F6B787 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		3E37AF3729AD789D00F6B787 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		3E37AF3A29AD789D00F6B787 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3E37AF3C29AD78A000F6B787 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3E37AF3F29AD78A000F6B787 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3E37AF4129AD78A000F6B787 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3E37E14529AD82B70002B0B5 /* CatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatModel.swift; sourceTree = "<group>"; };
+		3E37E14929AD849D0002B0B5 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		3E37E14C29AD87190002B0B5 /* CatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatsViewModel.swift; sourceTree = "<group>"; };
+		3E37E14F29AD90930002B0B5 /* CatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatTableViewCell.swift; sourceTree = "<group>"; };
+		3E94BE8629AD95C1001AC899 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +64,67 @@
 		3E37AF3229AD789D00F6B787 /* The cats app */ = {
 			isa = PBXGroup;
 			children = (
+				3E94BE8429AD9589001AC899 /* Utils */,
+				3E37E14429AD825B0002B0B5 /* Files */,
+				3E37E14329AD824C0002B0B5 /* Models */,
+				3E37E14229AD82420002B0B5 /* ViewModels */,
+				3E37E14129AD82390002B0B5 /* Views */,
+				3E37E14029AD82210002B0B5 /* Services */,
+			);
+			path = "The cats app";
+			sourceTree = "<group>";
+		};
+		3E37E14029AD82210002B0B5 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				3E37E14929AD849D0002B0B5 /* NetworkManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		3E37E14129AD82390002B0B5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3E37AF3729AD789D00F6B787 /* ViewController.swift */,
+				3E37E14F29AD90930002B0B5 /* CatTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3E37E14229AD82420002B0B5 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				3E37E14C29AD87190002B0B5 /* CatsViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		3E37E14329AD824C0002B0B5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3E37E14529AD82B70002B0B5 /* CatModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3E37E14429AD825B0002B0B5 /* Files */ = {
+			isa = PBXGroup;
+			children = (
+				3E37AF3C29AD78A000F6B787 /* Assets.xcassets */,
 				3E37AF3329AD789D00F6B787 /* AppDelegate.swift */,
 				3E37AF3529AD789D00F6B787 /* SceneDelegate.swift */,
-				3E37AF3729AD789D00F6B787 /* ViewController.swift */,
-				3E37AF3929AD789D00F6B787 /* Main.storyboard */,
-				3E37AF3C29AD78A000F6B787 /* Assets.xcassets */,
 				3E37AF3E29AD78A000F6B787 /* LaunchScreen.storyboard */,
 				3E37AF4129AD78A000F6B787 /* Info.plist */,
 			);
-			path = "The cats app";
+			name = Files;
+			sourceTree = "<group>";
+		};
+		3E94BE8429AD9589001AC899 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				3E94BE8629AD95C1001AC899 /* UIImageView+Extensions.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,7 +186,6 @@
 			files = (
 				3E37AF4029AD78A000F6B787 /* LaunchScreen.storyboard in Resources */,
 				3E37AF3D29AD78A000F6B787 /* Assets.xcassets in Resources */,
-				3E37AF3B29AD789D00F6B787 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,8 +196,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E37E15029AD90930002B0B5 /* CatTableViewCell.swift in Sources */,
 				3E37AF3829AD789D00F6B787 /* ViewController.swift in Sources */,
+				3E37E14D29AD87190002B0B5 /* CatsViewModel.swift in Sources */,
+				3E94BE8829AD95C1001AC899 /* UIImageView+Extensions.swift in Sources */,
 				3E37AF3429AD789D00F6B787 /* AppDelegate.swift in Sources */,
+				3E37E14A29AD849D0002B0B5 /* NetworkManager.swift in Sources */,
+				3E37E14629AD82B70002B0B5 /* CatModel.swift in Sources */,
 				3E37AF3629AD789D00F6B787 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -146,14 +210,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		3E37AF3929AD789D00F6B787 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3E37AF3A29AD789D00F6B787 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		3E37AF3E29AD78A000F6B787 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
