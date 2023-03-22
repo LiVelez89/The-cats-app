@@ -12,19 +12,27 @@ class CatTableViewCell: UITableViewCell {
     let breed = UILabel()
     let origin = UILabel()
     let breedDescription = UILabel()
-    let affection = UILabel()
-    let intelligence = UILabel()
-    let catImage = UIImageView()
+    let affectionLevel = UILabel()
+    let intelligenceLevel = UILabel()
     
     let stackView = UIStackView()
+    let collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: 200, height: 250)
+        layout.scrollDirection = .horizontal
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.identifier)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        return collectionView
+    }()
     
     static let reuseID = "CatCell"
-    static let rowHeight: CGFloat = 200
+    static let rowHeight: CGFloat = 450
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setup()
-        layout()
+        collectionView.dataSource = self
     }
     
     required init?(coder: NSCoder) {
@@ -32,8 +40,24 @@ class CatTableViewCell: UITableViewCell {
     }
 }
 
+extension CatTableViewCell: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 4
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.identifier, for: indexPath) as? CollectionViewCell else {
+            return UICollectionViewCell()
+        }
+
+        cell.backgroundColor = .systemBlue
+        return cell
+    }
+}
+
+// MARK: - Setup and Layout
 extension CatTableViewCell {
-   
+    
     private func setup() {
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -41,48 +65,55 @@ extension CatTableViewCell {
         stackView.spacing = 8
         
         breed.translatesAutoresizingMaskIntoConstraints = false
-        breed.font = UIFont.preferredFont(forTextStyle: .largeTitle)
+        breed.font = UIFont.preferredFont(forTextStyle: .title1)
         
         origin.translatesAutoresizingMaskIntoConstraints = false
         origin.font = UIFont.preferredFont(forTextStyle: .body)
         
         breedDescription.translatesAutoresizingMaskIntoConstraints = false
         breedDescription.font = UIFont.preferredFont(forTextStyle: .body)
+        breedDescription.numberOfLines = 0
         
-        affection.translatesAutoresizingMaskIntoConstraints = false
-        affection.font = UIFont.preferredFont(forTextStyle: .body)
+        affectionLevel.translatesAutoresizingMaskIntoConstraints = false
+        affectionLevel.font = UIFont.preferredFont(forTextStyle: .body)
         
-        intelligence.translatesAutoresizingMaskIntoConstraints = false
-        intelligence.font = UIFont.preferredFont(forTextStyle: .body)
-
-        catImage.translatesAutoresizingMaskIntoConstraints = false
+        intelligenceLevel.translatesAutoresizingMaskIntoConstraints = false
+        intelligenceLevel.font = UIFont.preferredFont(forTextStyle: .body)
         
-        let image = UIImage(named: "genericCat.jpg")
-        catImage.image = image
+        collectionView.backgroundColor = .systemOrange
+        collectionView.setContentHuggingPriority(.defaultHigh, for: .vertical)
         
+        contentView.addSubview(collectionView)
         contentView.addSubview(breed)
         contentView.addSubview(breedDescription)
-        contentView.addSubview(affection)
-        contentView.addSubview(catImage)
+        contentView.addSubview(origin)
         contentView.addSubview(stackView)
-        stackView.addArrangedSubview(origin)
-        stackView.addArrangedSubview(intelligence)
+        stackView.addArrangedSubview(affectionLevel)
+        stackView.addArrangedSubview(intelligenceLevel)
     
     }
     
-    private func layout() {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
         NSLayoutConstraint.activate([
-            breed.centerXAnchor.constraint(equalTo: centerXAnchor),
-            breed.topAnchor.constraint(equalToSystemSpacingBelow: topAnchor, multiplier: 2),
-            catImage.centerXAnchor.constraint(equalTo: centerXAnchor),
-            catImage.topAnchor.constraint(equalToSystemSpacingBelow: breed.bottomAnchor, multiplier: 1),
-            affection.centerXAnchor.constraint(equalTo: centerXAnchor),
-            affection.topAnchor.constraint(equalToSystemSpacingBelow: catImage.bottomAnchor, multiplier: 1),
-            stackView.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 2),
-            stackView.topAnchor.constraint(equalToSystemSpacingBelow: affection.bottomAnchor, multiplier: 1),
-            trailingAnchor.constraint(equalToSystemSpacingAfter: stackView.trailingAnchor, multiplier: 2),
-            breedDescription.centerXAnchor.constraint(equalTo: centerXAnchor),
-            breedDescription.topAnchor.constraint(equalToSystemSpacingBelow: stackView.bottomAnchor, multiplier: 1)
+            
+            collectionView.topAnchor.constraint(equalToSystemSpacingBelow: contentView.topAnchor, multiplier: 1),
+            collectionView.leadingAnchor.constraint(equalToSystemSpacingAfter: contentView.leadingAnchor, multiplier: 1),
+            contentView.trailingAnchor.constraint(equalToSystemSpacingAfter: collectionView.trailingAnchor, multiplier: 1),
+            collectionView.heightAnchor.constraint(equalToConstant: 140),
+            breed.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            breed.topAnchor.constraint(equalToSystemSpacingBelow: collectionView.bottomAnchor, multiplier: 2),
+            stackView.topAnchor.constraint(equalToSystemSpacingBelow: breed.bottomAnchor, multiplier: 2),
+            stackView.leadingAnchor.constraint(equalToSystemSpacingAfter: contentView.leadingAnchor, multiplier: 2),
+            contentView.trailingAnchor.constraint(equalToSystemSpacingAfter: stackView.trailingAnchor, multiplier: 2),
+            origin.topAnchor.constraint(equalToSystemSpacingBelow: stackView.bottomAnchor, multiplier: 2),
+            origin.leadingAnchor.constraint(equalToSystemSpacingAfter: contentView.leadingAnchor, multiplier: 2),
+            contentView.trailingAnchor.constraint(equalToSystemSpacingAfter: origin.trailingAnchor, multiplier: 2),
+            breedDescription.topAnchor.constraint(equalToSystemSpacingBelow: origin.bottomAnchor, multiplier: 2),
+            breedDescription.leadingAnchor.constraint(equalToSystemSpacingAfter: contentView.leadingAnchor, multiplier: 2),
+            contentView.trailingAnchor.constraint(equalToSystemSpacingAfter: breedDescription.trailingAnchor, multiplier: 2),
+            contentView.bottomAnchor.constraint(equalToSystemSpacingBelow: breedDescription.bottomAnchor, multiplier: 1)
         ])
     }
 }

@@ -34,15 +34,11 @@ final class CatsViewModel {
     }
     func buildCell(with cat: CatModel) -> CatTableViewCell {
         let cell = CatTableViewCell()
-        cell.breed.text = cat.breedName
-        cell.affection.text = String(cat.affectionLevel ?? 0)
-        cell.breedDescription.text = cat.description
-        cell.intelligence.text = String(cat.intelligence ?? 0)
-        cell.origin.text = cat.origin
-        if let imageUrl = cat.imageUrl {
-            let url = URL(string: imageUrl)
-            cell.catImage.fetchImage(url: url!)
-        }
+        cell.breed.text = "Breed: \(cat.breedName ?? "unknow")"
+        cell.affectionLevel.text = "Affection level: \(String(cat.affectionLevel ?? 0))"
+        cell.breedDescription.text = "Description: \(cat.description ?? "-")"
+        cell.intelligenceLevel.text = "Intelligence level: \(String(cat.intelligence ?? 0))"
+        cell.origin.text = "Origin: \(cat.origin ?? "-")"
         
         return cell
     }
